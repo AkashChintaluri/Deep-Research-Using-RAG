@@ -1,0 +1,13 @@
+# Backend Dependencies for Codemate ArXiv Data Processing
+
+# Core dependencies
+psycopg2-binary>=2.9.0
+tqdm>=4.64.0
+
+# Optional: FastAPI for REST API (if needed)
+# fastapi>=0.95.0
+# uvicorn>=0.20.0
+
+# Optional: Additional data processing
+# pandas>=1.5.0
+# numpy>=1.24.0

@@ -1,0 +1,142 @@
+# Codemate - ArXiv Data Processing Platform
+# .gitignore file for data injection project
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+*.log.*
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Data files (keep structure but ignore large files)
+# Uncomment if you want to ignore the raw data file
+# Raw Data/arxiv-metadata-oai-snapshot.json
+
+# Processed data (keep structure but ignore large files)
+# Uncomment if you want to ignore processed data
+# processed_data/*.jsonl
+# processed_data/*.db
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pytest
+.pytest_cache/
+.coverage
+htmlcov/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# Compressed files
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Node.js (if any frontend components are added later)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build outputs
+build/
+dist/
+*.egg-info/
+
+# Configuration files with sensitive data
+config.ini
+secrets.json
+credentials.json
+
+# Large data files that shouldn't be in version control
+*.csv
+*.json
+*.jsonl
+*.parquet
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+
+# But keep essential data structure
+!Raw Data/
+!processed_data/
+!requirements.txt
+!README.md
+!backend/
+!scripts/
