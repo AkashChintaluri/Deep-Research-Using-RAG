@@ -16,7 +16,8 @@ tqdm>=4.65.0
 
 # Vector databases
 pinecone>=7.0.0
-faiss-cpu>=1.7.4
+# instead of faiss-cpu>=1.7.4
+faiss-cpu==1.7.4
 
 # PDF processing
 PyPDF2>=3.0.0
