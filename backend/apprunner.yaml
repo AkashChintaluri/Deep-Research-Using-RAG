@@ -1,14 +1,13 @@
 version: 1.0
-runtime: python3
+runtime: python311
+runtimeVersion: 3.11.7
 build:
   commands:
-    build:
-      - echo "Installing Python dependencies..."
-      - pip install --upgrade pip
-      - pip install -r requirements.txt
-      - echo "Build completed successfully"
+    - echo "Installing Python dependencies..."
+    - pip install --upgrade pip
+    - pip install -r requirements.txt
+    - echo "Build completed successfully"
 run:
-  runtime-version: 3.9.16
   command: uvicorn app:app --host 0.0.0.0 --port 8000
   network:
     port: 8000
