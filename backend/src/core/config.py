@@ -10,61 +10,68 @@ from dotenv import load_dotenv
 load_dotenv()
 
 class Config:
-    """Base configuration class."""
+    """Base configuration class with hardcoded safe values."""
     
-    # Database settings
+    # Database settings (only sensitive values from environment)
     DB_HOST = os.getenv('DB_HOST', 'localhost')
-    DB_PORT = int(os.getenv('DB_PORT', 5432))
-    DB_NAME = os.getenv('DB_NAME', 'Codemate')
     DB_USER = os.getenv('DB_USER', 'postgres')
     DB_PASSWORD = os.getenv('DB_PASSWORD', 'akash')
     
-    # Data processing settings
-    BATCH_SIZE = int(os.getenv('BATCH_SIZE', 1000))
-    MAX_WORKERS = int(os.getenv('MAX_WORKERS', 4))
+    # Hardcoded database settings (safe to hardcode)
+    DB_PORT = 5432
+    DB_NAME = "arxiv"
     
-    # File paths
-    RAW_DATA_DIR = os.getenv('RAW_DATA_DIR', 'Raw Data')
-    PROCESSED_DATA_DIR = os.getenv('PROCESSED_DATA_DIR', 'processed_data')
+    # Hardcoded data processing settings
+    BATCH_SIZE = 1000
+    MAX_WORKERS = 4
     
-    # Logging
-    LOG_LEVEL = os.getenv('LOG_LEVEL', 'INFO')
-    LOG_FILE = os.getenv('LOG_FILE', 'data_processing.log')
+    # Hardcoded file paths
+    RAW_DATA_DIR = "Raw Data"
+    PROCESSED_DATA_DIR = "processed_data"
     
+    # Hardcoded logging settings
+    LOG_LEVEL = "INFO"
+    LOG_FILE = "data_processing.log"
     
-    # Embedding settings
-    EMBEDDING_MODEL_NAME = os.getenv('EMBEDDING_MODEL_NAME', 'sentence-transformers/all-MiniLM-L6-v2')
-    EMBEDDING_BATCH_SIZE = int(os.getenv('EMBEDDING_BATCH_SIZE', 32))
-    EMBEDDING_NORMALIZE_VECTORS = os.getenv('EMBEDDING_NORMALIZE_VECTORS', 'true').lower() == 'true'
-    EMBEDDING_VECTOR_DIMENSION = int(os.getenv('EMBEDDING_VECTOR_DIMENSION', 384))
+    # Hardcoded embedding settings
+    EMBEDDING_MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
+    EMBEDDING_BATCH_SIZE = 32
+    EMBEDDING_NORMALIZE_VECTORS = True
+    EMBEDDING_VECTOR_DIMENSION = 384
     
-    # FAISS settings
-    FAISS_INDEX_TYPE = os.getenv('FAISS_INDEX_TYPE', 'IndexFlatIP')
-    FAISS_METADATA_FILE = os.getenv('FAISS_METADATA_FILE', 'processed_data/faiss_metadata.jsonl')
-    FAISS_INDEX_FILE = os.getenv('FAISS_INDEX_FILE', 'processed_data/faiss_index.bin')
+    # Hardcoded FAISS settings
+    FAISS_INDEX_TYPE = "IndexFlatIP"
+    FAISS_METADATA_FILE = "processed_data/faiss_metadata.jsonl"
+    FAISS_INDEX_FILE = "processed_data/faiss_index.bin"
     
-    # Pinecone settings
+    # Pinecone settings (only API key from environment)
     PINECONE_API_KEY = os.getenv('PINECONE_API_KEY')
-    PINECONE_ENVIRONMENT = os.getenv('PINECONE_ENVIRONMENT', 'us-east-1-aws')
-    PINECONE_INDEX_NAME = os.getenv('PINECONE_INDEX_NAME', 'arxiv-papers')
-    PINECONE_DIMENSION = int(os.getenv('PINECONE_DIMENSION', 384))
-    PINECONE_METRIC = os.getenv('PINECONE_METRIC', 'cosine')
-    PINECONE_CLOUD = os.getenv('PINECONE_CLOUD', 'aws')
-    PINECONE_REGION = os.getenv('PINECONE_REGION', 'us-east-1')
     
-    # OpenAI/LLM settings
+    # Hardcoded Pinecone settings
+    PINECONE_ENVIRONMENT = "us-east-1-aws"
+    PINECONE_INDEX_NAME = "arxiv-papers"
+    PINECONE_DIMENSION = 384
+    PINECONE_METRIC = "cosine"
+    PINECONE_CLOUD = "aws"
+    PINECONE_REGION = "us-east-1"
+    
+    # OpenAI/LLM settings (only API key from environment)
     OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
-    OPENAI_MODEL = os.getenv('OPENAI_MODEL', 'gpt-4o')
-    OPENAI_MAX_TOKENS = int(os.getenv('OPENAI_MAX_TOKENS', 800))  # Reduced for faster responses
-    OPENAI_TEMPERATURE = float(os.getenv('OPENAI_TEMPERATURE', 0.5))  # Reduced for more focused responses
-    OPENAI_TIMEOUT = int(os.getenv('OPENAI_TIMEOUT', 15))  # Reduced timeout
     
-    # Azure OpenAI settings
+    # Hardcoded OpenAI settings
+    OPENAI_MODEL = "gpt-4o"
+    OPENAI_MAX_TOKENS = 800
+    OPENAI_TEMPERATURE = 0.5
+    OPENAI_TIMEOUT = 15
+    
+    # Azure OpenAI settings (only sensitive values from environment)
     AZURE_OPENAI_ENDPOINT = os.getenv('AZURE_OPENAI_ENDPOINT')
     AZURE_OPENAI_API_KEY = os.getenv('AZURE_OPENAI_API_KEY')
-    AZURE_OPENAI_API_VERSION = os.getenv('AZURE_OPENAI_API_VERSION', '2025-01-01-preview')
-    AZURE_OPENAI_DEPLOYMENT = os.getenv('AZURE_OPENAI_DEPLOYMENT', 'gpt-4o')
-    USE_AZURE_OPENAI = os.getenv('USE_AZURE_OPENAI', 'false').lower() == 'true'
+    
+    # Hardcoded Azure OpenAI settings
+    AZURE_OPENAI_API_VERSION = "2025-01-01-preview"
+    AZURE_OPENAI_DEPLOYMENT = "gpt-4o"
+    USE_AZURE_OPENAI = os.getenv('USE_AZURE_OPENAI', 'true').lower() == 'true'  # Default to Azure
     
     @classmethod
     def get_database_config(cls) -> Dict[str, Any]:
