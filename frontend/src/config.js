@@ -15,7 +15,7 @@ const getApiBaseUrl = () => {
   
   // Default based on environment
   const isDev = import.meta.env.DEV || process.env.NODE_ENV === 'development'
-  return isDev ? 'http://localhost:8000' : 'https://your-app-runner-url.us-east-1.awsapprunner.com'
+  return isDev ? 'http://localhost:8000' : 'https://2i7mq7kfxp.us-east-1.awsapprunner.com'
 }
 
 const config = {

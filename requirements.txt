@@ -1,0 +1,42 @@
+# --- web ---
+fastapi==0.117.1
+starlette==0.48.0
+uvicorn[standard]==0.33.0
+
+# --- DB ---
+psycopg2-binary==2.9.10
+
+# --- ML / embeddings ---
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.6.0+cpu
+sentence-transformers==3.2.1
+
+# FAISS is Linux/macOS only; keep NumPy<2 there. Windows uses NumPy 2.x wheels.
+faiss-cpu==1.7.4; platform_system != "Windows"
+numpy==1.26.4; platform_system != "Windows"
+numpy==2.1.2; platform_system == "Windows"
+
+pandas==2.3.2
+scikit-learn==1.6.1
+
+# SciPy: 1.13.1 (Linux/macOS with NumPy 1.26), 1.14.1 on Windows (has cp313 wheels)
+scipy==1.13.1; platform_system != "Windows"
+scipy==1.14.1; platform_system == "Windows"
+
+tqdm==4.67.1
+
+# --- Vector DB client ---
+pinecone==3.2.2  # (7.x does not exist on PyPI)
+
+# --- PDFs ---
+PyPDF2==3.0.1
+pdfplumber==0.11.7
+pdfminer.six==20250506
+pypdfium2==4.30.0
+
+# --- LLM / utils ---
+openai==1.108.1
+python-dotenv==1.1.1
+arxiv==2.2.0
+markdown==3.9
+reportlab==4.4.4

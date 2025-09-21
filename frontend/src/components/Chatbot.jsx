@@ -9,7 +9,7 @@ const Chatbot = () => {
   const [messages, setMessages] = useState([
     {
       id: 1,
-      text: "Welcome to the ArXiv Research Assistant! I'm an AI-powered research companion that can help you explore and understand astronomy and astrophysics research. I have access to 497 research papers and can provide detailed answers while finding relevant papers for you to explore. Ask me anything about black holes, galaxies, exoplanets, cosmic phenomena, or any other astronomical topics!",
+      text: "Deep Research Assistant - AI-powered astronomy research companion with 497 papers. Ask about black holes, galaxies, exoplanets, or cosmic phenomena!",
       sender: 'bot',
       timestamp: new Date()
     }
@@ -144,7 +144,7 @@ const Chatbot = () => {
     setShowPaperDetail(false)
     setMessages([{
       id: 1,
-      text: "Welcome to the ArXiv Research Assistant! I'm an AI-powered research companion that can help you explore and understand astronomy and astrophysics research. I have access to 497 research papers and can provide detailed answers while finding relevant papers for you to explore. Ask me anything about black holes, galaxies, exoplanets, cosmic phenomena, or any other astronomical topics!",
+      text: "Deep Research Assistant - AI-powered astronomy research companion with 497 papers. Ask about black holes, galaxies, exoplanets, or cosmic phenomena!",
       sender: 'bot',
       timestamp: new Date()
     }])
@@ -234,7 +234,7 @@ const Chatbot = () => {
                   </svg>
                 </div>
                 <div>
-                  <h1 className="text-xl font-bold text-white">ArXiv Research Assistant</h1>
+                  <h1 className="text-xl font-bold text-white">Deep Research Assistant</h1>
                   <p className="text-blue-100 text-sm font-medium">Advanced AI Research Platform</p>
                 </div>
               </div>
