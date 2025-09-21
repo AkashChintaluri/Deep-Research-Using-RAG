@@ -1,13 +1,36 @@
-# Backend Dependencies for Codemate ArXiv Data Processing
+# RAG Backend Server Requirements
+# ==============================
 
-# Core dependencies
-psycopg2-binary>=2.9.0
-tqdm>=4.64.0
+# Web framework
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
 
-# Optional: FastAPI for REST API (if needed)
-# fastapi>=0.95.0
-# uvicorn>=0.20.0
+# Database
+psycopg2-binary>=2.9.7
 
-# Optional: Additional data processing
-# pandas>=1.5.0
-# numpy>=1.24.0
+# Machine Learning & Embeddings
+sentence-transformers>=2.2.2
+numpy>=1.24.0
+pandas>=2.0.0
+tqdm>=4.65.0
+
+# Vector databases
+pinecone>=7.0.0
+faiss-cpu>=1.7.4
+
+# PDF processing
+PyPDF2>=3.0.0
+pdfplumber>=0.9.0
+
+# LLM Integration
+openai>=1.51.0
+
+# Utilities
+python-dotenv>=1.0.0
+arxiv>=2.0.0
+
+# Export functionality
+markdown>=3.4.0
+reportlab>=4.0.0
+# Note: WeasyPrint requires additional system dependencies on Windows
+# Install manually if PDF export is needed: pip install weasyprint

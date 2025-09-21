@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Text Test</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // Mock ReactMarkdown component for testing
+        const ReactMarkdown = ({ children, components = {} }) => {
+            const processMarkdown = (text) => {
+                // Simple markdown processing for demo
+                return text
+                    .replace(/^## (.+)$/gm, '<h2 class="text-xl font-bold text-blue-600 mb-3 mt-4 border-b-2 border-blue-200 pb-2">$1</h2>')
+                    .replace(/^### (.+)$/gm, '<h3 class="text-lg font-semibold text-gray-800 mb-2 mt-3">$1</h3>')
+                    .replace(/^(\d+)\.\s+(.+)$/gm, '<div class="flex items-start mb-2 ml-4"><span class="text-blue-600 mr-2 mt-1 font-semibold min-w-[2rem]">$1.</span><span class="text-gray-700 flex-1">$2</span></div>')
+                    .replace(/^-\s+(.+)$/gm, '<div class="flex items-start mb-2 ml-4"><span class="text-blue-600 mr-2 mt-1 min-w-[1rem]">•</span><span class="text-gray-700 flex-1">$1</span></div>')
+                    .replace(/\*\*(.+?)\*\*/g, '<strong class="font-bold text-gray-900">$1</strong>')
+                    .replace(/\*(.+?)\*/g, '<em class="italic text-gray-800">$1</em>')
+                    .replace(/\n\n/g, '</p><p class="text-gray-700 mb-3 leading-relaxed">')
+                    .replace(/^(.+)$/gm, '<p class="text-gray-700 mb-3 leading-relaxed">$1</p>')
+            }
+
+            return <div dangerouslySetInnerHTML={{ __html: processMarkdown(children) }} />
+        }
+
+        const MarkdownText = ({ text, className = '' }) => {
+            if (!text) return null
+
+            // Preprocess text to convert our specific format to markdown
+            const preprocessText = (text) => {
+                let processed = text
+
+                // Convert section headers
+                processed = processed.replace(/^Key Findings\s*\d+\./gm, '## Key Findings\n\n1.')
+                processed = processed.replace(/^Evidence & Analysis\s*-/gm, '## Evidence & Analysis\n\n-')
+                processed = processed.replace(/^Conclusions\s*[A-Z]/gm, '## Conclusions\n\n')
+                processed = processed.replace(/^Follow-up Questions\s*\d+\./gm, '## Follow-up Questions\n\n1.')
+
+                // Fix numbered lists that are concatenated
+                processed = processed.replace(/(\d+\.\s+[^0-9]+?)(\d+\.\s+)/g, '$1\n\n$2')
+                
+                // Fix bullet points that are concatenated
+                processed = processed.replace(/(-\s+[^-]+?)(-\s+)/g, '$1\n\n$2')
+
+                // Add proper spacing between sections
+                processed = processed.replace(/(## [A-Z][^#]+)/g, '\n\n$1\n\n')
+
+                return processed
+            }
+
+            const processedText = preprocessText(text)
+
+            return (
+                <div className={`markdown-content ${className}`}>
+                    <ReactMarkdown>
+                        {processedText}
+                    </ReactMarkdown>
+                </div>
+            )
+        }
+
+        const TestApp = () => {
+            const testText = `Key Findings 1. Wormholes can exist in accelerating universes: According to Paper 1 and Paper 2 (Gonzalez-Diaz & Martin-Moruno), wormholes may grow via the accretion of phantom energy, potentially leading to a "big trip" scenario in a multiverse context. 2. Non-minimal Wu-Yang wormholes: Papers 3-5 (Balakin et al.) describe a new class of traversable wormholes supported by SU(2)-symmetric Yang-Mills fields, with their stability and asymptotic mass dependent on throat radius and charge parameters. 3. Traversable vs. black wormholes: Non-minimal Wu-Yang wormholes can be regular and traversable or exhibit event horizons, depending on specific parameter values.Evidence & Analysis - The "big trip" process described in Paper 1 suggests that phantom energy accretion onto wormholes can lead to significant growth, aligning with multiverse theories and not violating holographic bounds. - Papers 3-5 focus on exact solutions in the Einstein-Yang-Mills model, showing how the throat radius and field parameters determine whether the wormhole is traversable or has horizons. - Both frameworks emphasize stability under specific energy conditions, with differences in the energy sources (phantom energy vs. Yang-Mills fields).Conclusions Wormholes are theoretically viable under specific conditions, with their properties influenced by the type of energy supporting them. The "big trip" scenario and non-minimal Wu-Yang solutions highlight distinct mechanisms for wormhole stability and evolution in accelerating universes.Follow-up Questions 1. What observational evidence, if any, exists for these theoretical wormholes? 2. How do the energy conditions differ between phantom energy and Yang-Mills fields in these models? 3. Could the "big trip" process have observable effects on a cosmological scale?`
+
+            return (
+                <div className="max-w-4xl mx-auto p-6">
+                    <h1 className="text-3xl font-bold mb-6 text-center">Markdown Text Rendering Test</h1>
+                    
+                    <div className="bg-white p-6 rounded-lg shadow-lg mb-6">
+                        <h2 className="text-xl font-semibold mb-4">Before (Raw Text):</h2>
+                        <div className="bg-gray-100 p-4 rounded text-sm font-mono whitespace-pre-wrap">
+                            {testText}
+                        </div>
+                    </div>
+                    
+                    <div className="bg-white p-6 rounded-lg shadow-lg">
+                        <h2 className="text-xl font-semibold mb-4">After (Markdown Rendered):</h2>
+                        <MarkdownText text={testText} />
+                    </div>
+                </div>
+            )
+        }
+
+        ReactDOM.render(<TestApp />, document.getElementById('root'));
+    </script>
+</body>
+</html>

@@ -1,0 +1,389 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Professional Design System */
+:root {
+  /* Primary Colors - Deep Blue Professional */
+  --primary-50: #eff6ff;
+  --primary-100: #dbeafe;
+  --primary-200: #bfdbfe;
+  --primary-300: #93c5fd;
+  --primary-400: #60a5fa;
+  --primary-500: #3b82f6;
+  --primary-600: #1e40af;
+  --primary-700: #1e3a8a;
+  --primary-800: #1e3a8a;
+  --primary-900: #1e293b;
+  
+  /* Neutral Colors - Professional Grays */
+  --neutral-50: #f8fafc;
+  --neutral-100: #f1f5f9;
+  --neutral-200: #e2e8f0;
+  --neutral-300: #cbd5e1;
+  --neutral-400: #94a3b8;
+  --neutral-500: #64748b;
+  --neutral-600: #475569;
+  --neutral-700: #334155;
+  --neutral-800: #1e293b;
+  --neutral-900: #0f172a;
+  
+  /* Accent Colors */
+  --accent-purple: #8b5cf6;
+  --accent-emerald: #10b981;
+  --accent-amber: #f59e0b;
+  --accent-rose: #f43f5e;
+  
+  /* Semantic Colors */
+  --success: #059669;
+  --warning: #d97706;
+  --error: #dc2626;
+  --info: #0284c7;
+}
+
+/* Custom utilities for line clamping */
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+/* Professional Component Styles */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-800) 100%);
+}
+
+.card-shadow {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.card-shadow-hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.card-shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Smooth transitions */
+.transition-all {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-transform {
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Professional scrollbars */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: var(--neutral-100);
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: var(--neutral-300);
+  border-radius: 3px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: var(--neutral-400);
+}
+
+/* Professional button styles */
+.btn-primary {
+  @apply px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200;
+}
+
+.btn-secondary {
+  @apply px-4 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg font-medium hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200;
+}
+
+/* Base Styles */
+body {
+  @apply m-0 font-sans antialiased;
+}
+
+/* Custom Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+.animation-delay-100 {
+  animation-delay: 0.1s;
+}
+
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}
+
+/* App Layout */
+.app-container {
+  @apply min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 relative;
+}
+
+.app-background {
+  @apply absolute inset-0 opacity-40;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f0f9ff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.app-content {
+  @apply relative container mx-auto px-4 py-8;
+}
+
+/* Header Styles */
+.app-header {
+  @apply text-center mb-12;
+}
+
+.app-icon {
+  @apply inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full mb-6 shadow-lg;
+}
+
+.app-title {
+  @apply text-5xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-4;
+}
+
+.app-subtitle {
+  @apply text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed;
+}
+
+.feature-list {
+  @apply flex justify-center space-x-4 mt-6;
+}
+
+.feature-item {
+  @apply flex items-center text-sm text-gray-500;
+}
+
+.feature-dot {
+  @apply w-2 h-2 rounded-full mr-2;
+}
+
+.feature-dot-green {
+  @apply bg-green-400;
+}
+
+.feature-dot-blue {
+  @apply bg-blue-400;
+}
+
+.feature-dot-purple {
+  @apply bg-purple-400;
+}
+
+/* Chatbot Container */
+.chatbot-container {
+  @apply max-w-5xl mx-auto;
+}
+
+.chatbot-wrapper {
+  @apply bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-100;
+}
+
+.chatbot-header {
+  @apply bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-6;
+}
+
+.chatbot-header-content {
+  @apply flex items-center justify-between;
+}
+
+.chatbot-title {
+  @apply text-2xl font-bold;
+}
+
+.chatbot-subtitle {
+  @apply text-blue-100 text-sm mt-1;
+}
+
+.chatbot-status {
+  @apply flex items-center space-x-2;
+}
+
+.status-indicator {
+  @apply w-3 h-3 rounded-full animate-pulse;
+}
+
+.status-text {
+  @apply text-sm text-blue-100;
+}
+
+/* Message List */
+.message-list {
+  @apply h-[500px] overflow-y-auto p-6 space-y-6 bg-gray-50;
+}
+
+.message-item {
+  @apply animate-fadeInUp;
+}
+
+/* Message Styles */
+.message-container {
+  @apply flex;
+}
+
+.message-container-user {
+  @apply justify-end;
+}
+
+.message-container-bot {
+  @apply justify-start;
+}
+
+.message-bubble {
+  @apply max-w-xs lg:max-w-lg px-6 py-4 rounded-2xl shadow-md transition-all duration-200 hover:shadow-lg;
+}
+
+.message-bubble-user {
+  @apply bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-br-md;
+}
+
+.message-bubble-bot {
+  @apply bg-white text-gray-800 border border-gray-100 rounded-bl-md;
+}
+
+.message-content {
+  @apply flex items-start space-x-3;
+}
+
+.bot-avatar {
+  @apply flex-shrink-0 w-8 h-8 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full flex items-center justify-center;
+}
+
+.message-text {
+  @apply flex-1;
+}
+
+.message-paragraph {
+  @apply text-sm leading-relaxed;
+}
+
+/* Sources Section */
+.sources-section {
+  @apply mt-3 pt-3 border-t border-gray-200;
+}
+
+.sources-title {
+  @apply text-xs font-semibold mb-2 text-gray-600;
+}
+
+.sources-list {
+  @apply space-y-2;
+}
+
+.source-item {
+  @apply bg-gray-50 rounded-lg p-2 text-xs;
+}
+
+.source-content {
+  @apply flex items-center justify-between;
+}
+
+.source-title {
+  @apply font-medium text-gray-700 truncate;
+}
+
+.source-score {
+  @apply ml-2 px-2 py-1 bg-blue-100 text-blue-600 rounded-full text-xs;
+}
+
+.message-timestamp {
+  @apply text-xs opacity-60 mt-2;
+}
+
+/* Loading Animation */
+.loading-container {
+  @apply flex justify-start animate-fadeInUp;
+}
+
+.loading-bubble {
+  @apply bg-white rounded-2xl p-4 max-w-xs shadow-md border border-gray-100;
+}
+
+.loading-content {
+  @apply flex items-center space-x-2;
+}
+
+.loading-dots {
+  @apply flex space-x-1;
+}
+
+.loading-dot {
+  @apply w-2 h-2 bg-blue-400 rounded-full animate-bounce;
+}
+
+.loading-text {
+  @apply text-sm text-gray-500 ml-2;
+}
+
+/* Input Section */
+.input-container {
+  @apply border-t bg-white p-6;
+}
+
+.input-form {
+  @apply flex space-x-3;
+}
+
+.input-wrapper {
+  @apply flex-1 relative;
+}
+
+.message-input {
+  @apply w-full px-4 py-3 pr-12 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.input-icon {
+  @apply absolute right-3 top-1/2 transform -translate-y-1/2;
+}
+
+.input-icon-svg {
+  @apply w-5 h-5 text-gray-400;
+}
+
+.send-button {
+  @apply px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-2xl hover:from-blue-600 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-lg hover:shadow-xl;
+}
+
+.send-button-content {
+  @apply flex items-center space-x-2;
+}
+
+.send-icon {
+  @apply w-4 h-4;
+}

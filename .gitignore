@@ -1,7 +1,9 @@
-# Codemate - ArXiv Data Processing Platform
-# .gitignore file for data injection project
+# Codemate - ArXiv Research Assistant
+# .gitignore file for full-stack RAG application
 
-# Python
+# ===========================================
+# Python Backend
+# ===========================================
 __pycache__/
 *.py[cod]
 *$py.class
@@ -33,7 +35,31 @@ env.bak/
 venv.bak/
 .venv/
 
+# ===========================================
+# Node.js Frontend
+# ===========================================
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Build outputs
+frontend/dist/
+frontend/build/
+frontend/.vite/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ===========================================
 # IDE and Editor files
+# ===========================================
 .vscode/
 .idea/
 *.swp
@@ -42,32 +68,72 @@ venv.bak/
 .DS_Store
 Thumbs.db
 
+# ===========================================
 # Logs
+# ===========================================
 *.log
 logs/
 *.log.*
 
+# ===========================================
 # Database files
+# ===========================================
 *.db
 *.sqlite
 *.sqlite3
 
-# Data files (keep structure but ignore large files)
-# Uncomment if you want to ignore the raw data file
-# Raw Data/arxiv-metadata-oai-snapshot.json
+# ===========================================
+# Data Files (Large files that shouldn't be in git)
+# ===========================================
+# Large PDF files
+backend/data/pdfs/
+*.pdf
 
-# Processed data (keep structure but ignore large files)
-# Uncomment if you want to ignore processed data
-# processed_data/*.jsonl
-# processed_data/*.db
+# Large processed data files
+backend/processed_data/*.jsonl
+backend/processed_data/*.bin
+backend/processed_data/*.pkl
+backend/processed_data/*.pickle
 
+# Large raw data files
+backend/data/arxiv-metadata-oai-snapshot.json
+
+# Export files
+backend/exports/
+*.md
+*.pdf
+
+# But keep essential structure and config files
+!backend/data/
+!backend/processed_data/
+!backend/exports/
+!**/README.md
+!**/requirements.txt
+!**/package.json
+!**/package-lock.json
+
+# ===========================================
+# AWS and Deployment
+# ===========================================
+# AWS deployment artifacts
+apprunner-service.json
+*.pem
+*.key
+
+# Docker
+.dockerignore
+
+# ===========================================
 # Temporary files
+# ===========================================
 *.tmp
 *.temp
 temp/
 tmp/
 
+# ===========================================
 # OS generated files
+# ===========================================
 .DS_Store
 .DS_Store?
 ._*
@@ -76,6 +142,9 @@ tmp/
 ehthumbs.db
 Thumbs.db
 
+# ===========================================
+# Development Tools
+# ===========================================
 # Jupyter Notebook
 .ipynb_checkpoints
 
@@ -89,54 +158,51 @@ htmlcov/
 .dmypy.json
 dmypy.json
 
-# Environment variables
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# Backup files
+# ===========================================
+# Backup and Archive files
+# ===========================================
 *.bak
 *.backup
 *.old
-
-# Compressed files
 *.zip
 *.tar.gz
 *.rar
 *.7z
 
-# Node.js (if any frontend components are added later)
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Build outputs
-build/
-dist/
-*.egg-info/
-
+# ===========================================
 # Configuration files with sensitive data
+# ===========================================
 config.ini
 secrets.json
 credentials.json
+*.pem
+*.key
 
-# Large data files that shouldn't be in version control
+# ===========================================
+# Large data files (but allow small config files)
+# ===========================================
 *.csv
-*.json
-*.jsonl
 *.parquet
 *.h5
 *.hdf5
-*.pkl
-*.pickle
 
-# But keep essential data structure
-!Raw Data/
-!processed_data/
-!requirements.txt
-!README.md
-!backend/
-!scripts/
+# Allow small JSON config files but ignore large data files
+!**/package.json
+!**/package-lock.json
+!**/tsconfig.json
+!**/vite.config.js
+!**/tailwind.config.js
+!**/postcss.config.js
+!**/eslint.config.js
+!**/apprunner.yaml
+!**/amplify.yml
+!**/Dockerfile
+!**/.dockerignore
+
+# ===========================================
+# Test files (keep structure but ignore large test data)
+# ===========================================
+test_*.py
+test_*.md
+test_*.pdf
+!**/test/
