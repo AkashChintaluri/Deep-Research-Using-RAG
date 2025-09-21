@@ -3,6 +3,7 @@ import MessageList from './MessageList'
 import MessageInput from './MessageInput'
 import PaperList from './PaperList'
 import PaperDetail from './PaperDetail'
+import config, { getApiUrl, isDevelopment, logConfig } from '../config.js'
 
 const Chatbot = () => {
   const [messages, setMessages] = useState([
@@ -23,12 +24,15 @@ const Chatbot = () => {
 
   // Check backend health on component mount
   useEffect(() => {
+    // Log configuration in development
+    logConfig()
+    
     const checkBackendHealth = async () => {
       try {
         // Check both regular health and RAG health
         const [healthResponse, chatHealthResponse] = await Promise.all([
-          fetch('http://localhost:8000/api/v1/health'),
-          fetch('http://localhost:8000/api/v1/chat/health')
+          fetch(getApiUrl('api/v1/health')),
+          fetch(getApiUrl('api/v1/chat/health'))
         ])
         
         if (healthResponse.ok && chatHealthResponse.ok) {
@@ -63,7 +67,7 @@ const Chatbot = () => {
     setIsLoading(true)
 
     try {
-      const response = await fetch('http://localhost:8000/api/v1/chat', {
+      const response = await fetch(getApiUrl('api/v1/chat'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -118,7 +122,7 @@ const Chatbot = () => {
       } else if (error.message.includes('HTTP error! status: 404')) {
         errorText = "The search endpoint was not found. Please check if the backend server is running."
       } else if (error.message.includes('Failed to fetch')) {
-        errorText = "Cannot connect to the backend server. Please ensure the server is running on http://localhost:8000"
+        errorText = `Cannot connect to the backend server. Please ensure the server is running on ${config.API_BASE_URL}`
       }
       
       const errorMessage = {
@@ -173,7 +177,7 @@ const Chatbot = () => {
 
     setIsExporting(true)
     try {
-      const response = await fetch(`http://localhost:8000/api/v1/chat/export/${format}`, {
+      const response = await fetch(getApiUrl(`api/v1/chat/export/${format}`), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

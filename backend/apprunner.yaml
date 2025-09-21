@@ -1,20 +1,10 @@
 version: 1.0
-runtime: python311
-runtimeVersion: 3.11.7
+runtime: python3.11
 build:
   commands:
-    - echo "Installing Python dependencies..."
-    - pip install --upgrade pip
+    - pip install --upgrade pip setuptools wheel
     - pip install -r requirements.txt
-    - echo "Build completed successfully"
 run:
   command: uvicorn app:app --host 0.0.0.0 --port 8000
   network:
     port: 8000
-  env:
-    - name: PYTHONPATH
-      value: /app
-    - name: PYTHONUNBUFFERED
-      value: 1
-    - name: LOG_LEVEL
-      value: INFO
