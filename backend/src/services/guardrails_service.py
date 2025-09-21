@@ -77,7 +77,8 @@ class GuardrailsService:
         # Check for obvious out-of-scope patterns
         for pattern in self.out_of_scope_patterns:
             if re.search(pattern, query_lower):
-                return False, f"Query appears to be about {pattern.split('|')[0].strip('\\b()')} which is outside the scope of astronomy research papers."
+                topic = pattern.split('|')[0].strip('\\b()')
+                return False, f"Query appears to be about {topic} which is outside the scope of astronomy research papers."
         
         # Check for astronomy keywords
         all_keywords = []
